@@ -1,0 +1,45 @@
+<?php
+
+spl_autoload_register('hapebe_autoload');
+
+function hapebe_autoload($className) {
+	static $roots;
+	if (!isset($roots)) {
+		$roots = array();
+		// if (isset($_SERVER['DOCUMENT_ROOT']))	$roots[] = $_SERVER['DOCUMENT_ROOT'].'/php/lib/classes/';
+		$roots[] = str_replace('\\','/',realpath(dirname(__FILE__).'/../../../../sites/all/classes/'));
+	} // print_r($roots); exit;
+	
+	$altPath = '';
+	if (mb_strpos($className, "_") !== false) {
+		$parts = explode("_", $className);
+		array_pop($parts);
+		$altPath = implode("/", $parts)."/";
+	} // echo $altPath; exit;
+	
+	foreach ($roots as $root) {
+		// echo $root;
+		// $d = dir($root);
+		// echo "Handle: " . $d->handle . "\n";
+		// echo "Path: " . $d->path . "\n";
+		// while (false !== ($entry = $d->read())) { echo $entry."\n"; }
+		// $d->close();
+	
+	    $guess = $root.'/'.$altPath.$className.'.php'; // echo $guess; exit;
+	    if (file_exists($guess)) {
+			@require_once($guess);
+			return;
+		}
+
+		if (file_exists($root.'/'.$className.'.php')) {
+			@require_once($root.'/'.$className.'.php');
+			return;
+		}
+	}
+
+	return false;
+}
+
+
+
+?>

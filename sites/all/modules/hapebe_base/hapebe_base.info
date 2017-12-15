@@ -1,0 +1,4 @@
+name = hapebe Dev Base
+package = hapebe
+description = Provides basic functionality for other components developed by hapebe.
+core = 7.x

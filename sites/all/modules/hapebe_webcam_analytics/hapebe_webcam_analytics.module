@@ -1,0 +1,70 @@
+<?php
+
+/**
+* Implements hook_menu().
+*/
+function hapebe_webcam_analytics_menu() {
+  $items = array();
+  /* $items['admin/config/content/hapebe_webcam_analytics'] = array(
+    'title' => 'Current posts',
+    'description' => 'Configuration for Current posts module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hapebe_webcam_analytics_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  ); */
+  $items['webcam-analytics/test'] = array(
+    'title' => 'hapebe Webcam Image Analytics - Test Page',
+    'description' => 'several testing and demo routines',
+    'page callback' => 'hapebe_webcam_analytics_page_test',
+    'page arguments' => array(2, 3),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'hapebe_webcam_analytics.pages.inc.php',
+  );
+  $items['webcam-analytics/view'] = array(
+    'title' => 'hapebe Webcam Image Analytics - View and Navigate',
+    'description' => 'Display single images and their stats, browse and navigate',
+    'page callback' => 'hapebe_webcam_analytics_page_view',
+    'page arguments' => array(2, 3),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'hapebe_webcam_analytics.pages.inc.php',
+  );
+  $items['webcam-analytics/import'] = array(
+    'title' => 'hapebe Webcam Image Analytics - Import New Images',
+    'page callback' => 'hapebe_webcam_analytics_page_import_images',
+    'page arguments' => array(2, 3),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_CALLBACK,
+    'file' => 'hapebe_webcam_analytics.pages.inc.php',
+  );
+  return $items;
+}
+
+/**
+ * $arg0 can be an array that will be merged into the config (write access!)
+ */
+function hapebe_webcam_analytics_config($arg0 = FALSE) {
+    static $config;
+
+    if (!isset($config)) {
+		$config = array(
+			'STORAGE_BASE_DIR' => '/media/sf_webcam-storage/feodora',
+			'PIXEL_COUNT_OPT' => 100000,
+			'FILE_BASE_PATH' => drupal_realpath(file_default_scheme() . '://') . '/webcam',
+		);
+    }
+    
+    if ($arg0 !== FALSE) {
+		if (is_array($arg0)) {
+			foreach ($arg0 as $k => $v) {
+				$config[$k] = $v;
+			}
+		}
+    }
+    
+    return $config;
+}
+
+?>

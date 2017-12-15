@@ -1,0 +1,1 @@
+document.ia.materials.m<!--@cc--> = new THREE.MeshBasicMaterial( { color: 0x<!--@cc--> } ); 

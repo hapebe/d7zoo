@@ -1,0 +1,73 @@
+<?php
+
+/**
+* Implements hook_menu().
+*/
+function hapebe_img_analytics_menu() {
+  $items = array();
+  /* $items['admin/config/content/hapebe_img_analytics'] = array(
+    'title' => 'Current posts',
+    'description' => 'Configuration for Current posts module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hapebe_img_analytics_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  ); */
+  $items['ia/test'] = array(
+    'title' => 'hapebe Image Analytics - Test Page',
+    'description' => 'several testing and demo routines',
+    'page callback' => 'hapebe_img_analytics_page_test',
+    'page arguments' => array(2, 3),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'hapebe_img_analytics.pages.inc.php',
+  );
+  return $items;
+}
+
+/**
+ * $arg0 can be an array that will be merged into the config (write access!)
+ */
+function hapebe_img_analytics_config($arg0 = FALSE) {
+    static $config;
+    
+    if (!isset($config)) {
+	$config = array(
+	    'PIXEL_COUNT_OPT' => 100000,
+	    'files' => array(
+		// 'D:/mediaXL/fotos/public/unterspuelungen-florida-a-967327-690612.jpg',
+		// 'D:/mediaXL/fotos/public/DWFotos/PTBL0003.JPG',
+		'D:/mediaXL/fotos/public/DWFotos/BLUMEN_3.JPG',
+		// 'D:/mediaXL/fotos/public/DWFotos/SCSK0090.JPG',
+		// 'D:/mediaXL/fotos/public/DWFotos/SCMT0116.JPG',
+		// 'D:/mediaXL/fotos/public/DWFotos/PLPF0027.JPG',
+		// 'D:/mediaXL/fotos/public/DWFotos/SCWT0139.JPG',
+		// 'D:/mediaXL/fotos/public/DWFotos/FELSEN_1_SW.JPG',
+		// 'D:/mediaXL/fotos/public/DWFotos/FELSEN_1.JPG',
+		// 'D:/mediaXL/fotos/public/DWFotos/SCST0035.JPG',
+		// 'D:/mediaXL/fotos/public/DWFotos/SCWT0261.JPG',
+		// 'D:/fotos/2014-12-20,21/DSCN1935.JPG',
+		// 'D:/fotos/Yvonne (20)m.jpg',
+		// 'D:/fotos/IMG_0304.JPG',
+		// 'C:/xampp/apps/drupal/htdocs/sites/all/modules/hapebe_img_analytics/RGB-test-image.png',
+		// 'C:/xampp/apps/drupal/htdocs/sites/all/modules/hapebe_img_analytics/color-wheel.png',
+	    ),
+	);
+    }
+    
+    if ($arg0 !== FALSE) {
+	if (is_array($arg0)) {
+	    foreach ($arg0 as $k => $v) {
+		$config[$k] = $v;
+	    }
+	}
+    }
+    
+    if (empty($config['files'])) {
+	drupal_set_message(t('%file @ %line : There are no work files configured.', array('%file' => __FILE__, '%line' => __LINE__, '%s' => $this->s)), 'error');
+    }
+    
+    return $config;
+}
+
+?>

@@ -1,0 +1,5 @@
+name = hapebe Webcam Image Analytics (Experimental)
+package = hapebe
+description = Webcam image processing and analytics, experimental
+core = 7.x
+dependencies[] = hapebe_base:hapebe_base

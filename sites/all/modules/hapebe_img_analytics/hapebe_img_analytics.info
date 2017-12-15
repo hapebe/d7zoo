@@ -1,0 +1,4 @@
+name = hapebe Image Analytics (Experimental)
+package = hapebe
+description = Image processing and analytics, experimental
+core = 7.x
