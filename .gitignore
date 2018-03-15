@@ -52,6 +52,7 @@ sites/all/modules/token/
 sites/all/modules/views/
 sites/all/themes/
 sites/default/default.settings.php
+sites/default/files/ia/
 sites/example.sites.php
 themes/
 update.php
