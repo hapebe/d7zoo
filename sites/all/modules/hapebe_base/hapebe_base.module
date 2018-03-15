@@ -40,6 +40,35 @@ function hapebe_autoload($className) {
 	return false;
 }
 
+/**
+ * shorthand error reporting function
+ * usage:
+ * e(__FILE__, __LINE__, $msg);
+ * e(__FILE__, __LINE__, $msg, 'warn');
+ */
+function e($file, $line, $msg, $severity = 'error') {
+	drupal_set_message(
+		t(
+			'%file @ %line : %msg',
+			array(
+				'%file' => $file, 
+				'%line' => $line, 
+				'%msg' => $msg
+			)
+		), 
+		$severity
+	);
+}
+
+/**
+ * shorthand message function
+ * usage:
+ * m($msg);
+ * m($msg, 'warn');
+ */
+function m($msg, $severity = 'status') {
+	drupal_set_message($msg, $severity);
+}
 
 
 ?>
