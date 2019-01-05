@@ -69,9 +69,13 @@ function hapebe_webcam_analytics_config($arg0 = FALSE) {
 		
 		$config = array(
 			'STORAGE_BASE_DIR' => '/media/sf_webcam-storage/feodora',
+			// if auto-mount fails, this can be mounted (on the Xenia machine) using:
+			// sudo mount -t vboxsf webcam-storage /media/sf_webcam-storage/
 			'PIXEL_COUNT_OPT' => 100000,
 			'FILE_BASE_PATH' => drupal_realpath(file_default_scheme() . '://') . '/webcam',
 			'HTTP_ROOT' => base_path(),
+			'YEAR_START' => strtotime('2017-07-31 22:00'),
+			'YEAR_END' => strtotime('2018-07-31 21:59'),
 		);
     }
     

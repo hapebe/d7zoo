@@ -363,7 +363,7 @@ function hapebe_webcam_analytics_ajax_import() {
 		if ($entry == '.' || $entry == '..') continue;
 		$candidates[] = $entry;
 		
-		if (count($candidates) >= 500) break;
+		if (count($candidates) >= 2000) break;
 	}
 	$d->close();
 	

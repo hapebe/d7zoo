@@ -6,7 +6,7 @@ class WebcamImageSet {
 	
 	/** names of the well-known sets (they can be re-generated etc...) */
 	const WELLKNOWN_SETS = array(
-		'ALL', 'MINI', 'A1000S', '7DAY', 'YAD7',
+		'ALL', 'MINI', 'A1000S', '7DAY', 'YAD7', 'B1k', 'B20k'
 	);
 	
 	function __construct($name) {
